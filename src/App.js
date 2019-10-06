@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "@material/dialog/dist/mdc.dialog.css";
+import "@material/button/dist/mdc.button.css";
+
+import { Button } from "@rmwc/button";
+import {
+  Dialog,
+  DialogActions,
+  DialogButton,
+  DialogContent,
+  DialogTitle
+} from "@rmwc/dialog";
+import React, { useState } from "react";
 
 function App() {
+  const [isDialogOpen, toggleDialog] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Button onClick={() => toggleDialog(true)}>Open Dialog</Button>
+      <Dialog open={isDialogOpen} onClose={() => toggleDialog(false)}>
+        <DialogTitle>Test Dialog</DialogTitle>
+        <DialogContent>Some content</DialogContent>
+        <DialogActions>
+          <DialogButton action="close">Close</DialogButton>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 }
 
